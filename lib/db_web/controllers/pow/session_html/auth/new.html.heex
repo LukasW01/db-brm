@@ -1,0 +1,68 @@
+<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <.header class="text-center">
+    Sign in
+    <:subtitle>
+      Don't have an account?
+      <.link
+        navigate={Pow.Phoenix.Routes.path_for(@conn, Pow.Phoenix.RegistrationController, :new)}
+        class="font-semibold text-brand hover:underline"
+      >
+        Register
+      </.link>
+      now
+    </:subtitle>
+  </.header>
+
+  <.simple_form
+    :let={f}
+    for={@changeset}
+    as={:user}
+    action={@action}
+    class="bg-white dark:bg-gray-800 mt-10 sm:mx-auto sm:w-full sm:max-w-[480px] px-12 pb-10 shadow rounded-lg"
+  >
+    <.error :if={@changeset.action}>
+      Something went wrong!
+    </.error>
+    <.input
+      field={f[Pow.Ecto.Schema.user_id_field(@changeset)]}
+      type={(Pow.Ecto.Schema.user_id_field(@changeset) == :email && "email") || "text"}
+      label={Phoenix.Naming.humanize(Pow.Ecto.Schema.user_id_field(@changeset))}
+      required
+    />
+    <.input field={f[:password]} type="password" label="Password" value={nil} required />
+
+    <:actions
+      :let={f}
+      :if={
+        Pow.Plug.extension_enabled?(@conn, PowPersistentSession) ||
+          Pow.Plug.extension_enabled?(@conn, PowResetPassword)
+      }
+    >
+      <.input
+        :if={Pow.Plug.extension_enabled?(@conn, PowPersistentSession)}
+        field={f[:persistent_session]}
+        type="checkbox"
+        label="Keep me logged in"
+      />
+      <.link
+        :if={Pow.Plug.extension_enabled?(@conn, PowResetPassword)}
+        href={
+          Pow.Phoenix.Routes.path_for(
+            @conn,
+            PowResetPassword.Phoenix.ResetPasswordController,
+            :new
+          )
+        }
+        class="text-sm font-semibold hover:text-sky-500 dark:hover:text-sky-400 text-gray-700 dark:text-gray-300"
+      >
+        Forgot your password?
+      </.link>
+    </:actions>
+
+    <:actions>
+      <.button phx-disable-with="Signing in...">
+        Sign in <span aria-hidden="true">→</span>
+      </.button>
+    </:actions>
+  </.simple_form>
+</div>

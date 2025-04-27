@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="flex flex-col h-full bg-gray-100 dark:bg-gray-900 [scrollbar-gutter:stable]"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title default="Backup manager" suffix=" · DB">
+      {assigns[:page_title]}
+    </.live_title>
+    <link
+      phx-track-static
+      rel="stylesheet"
+      href={~p"/assets/tailwind.css?#{System.os_time(:second)}"}
+    />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css?#{System.os_time(:second)}"} />
+    <script
+      defer
+      phx-track-static
+      type="text/javascript"
+      src={~p"/assets/app.js?#{System.os_time(:second)}"}
+    />
+    <link rel="icon" type="image/x-icon" href={~p"/favicon.ico"} />
+  </head>
+  <body>
+    <._nav :if={assigns[:nav] != :fullscreen} conn={@conn} />
+    {@inner_content}
+  </body>
+</html>

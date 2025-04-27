@@ -1,0 +1,41 @@
+<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <.header class="text-center">
+    Register
+    <:subtitle>
+      Already have an account?
+      <.link
+        navigate={Pow.Phoenix.Routes.path_for(@conn, Pow.Phoenix.SessionController, :new)}
+        class="font-semibold text-brand hover:underline"
+      >
+        Sign in
+      </.link>
+      now.
+    </:subtitle>
+  </.header>
+
+  <.simple_form
+    :let={f}
+    for={@changeset}
+    as={:user}
+    action={@action}
+    class="bg-white dark:bg-gray-800 mt-10 sm:mx-auto sm:w-full sm:max-w-[480px] px-12 pb-10 shadow rounded-lg"
+  >
+    <.error :if={@changeset.action}>
+      Something went wrong!
+    </.error>
+    <.input
+      field={f[Pow.Ecto.Schema.user_id_field(@changeset)]}
+      type={(Pow.Ecto.Schema.user_id_field(@changeset) == :email && "email") || "text"}
+      label={Phoenix.Naming.humanize(Pow.Ecto.Schema.user_id_field(@changeset))}
+      required
+    />
+    <.input field={f[:password]} type="password" label="Password" required />
+    <.input field={f[:password_confirmation]} type="password" label="Confirm password" required />
+
+    <:actions>
+      <.button phx-disable-with="Registering..." class="mt-2">
+        Register <span aria-hidden="true">→</span>
+      </.button>
+    </:actions>
+  </.simple_form>
+</div>
