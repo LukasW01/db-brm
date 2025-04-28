@@ -4,7 +4,7 @@ defmodule DbWeb.Router do
   use PowAssent.Phoenix.Router
 
   use Pow.Extension.Phoenix.Router,
-    extensions: [PowResetPassword, PowEmailConfirmation]
+    extensions: [PowResetPassword, PowEmailConfirmation, PowPersistentSession]
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -47,8 +47,9 @@ defmodule DbWeb.Router do
 
       provider when provider not in ["KEYCLOAK", "APPLE", "GOOGLE"] ->
         pow_routes()
-        pow_extension_routes()
     end
+
+    pow_extension_routes()
   end
 
   scope "/", DbWeb do

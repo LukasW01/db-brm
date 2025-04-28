@@ -7,7 +7,7 @@ defmodule Db.Users.User do
   use PowAssent.Ecto.Schema
 
   use Pow.Extension.Ecto.Schema,
-    extensions: [PowResetPassword, PowEmailConfirmation]
+    extensions: [PowResetPassword, PowEmailConfirmation, PowPersistentSession]
 
   schema "users" do
     pow_user_fields()

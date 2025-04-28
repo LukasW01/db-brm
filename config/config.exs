@@ -6,7 +6,6 @@
 
 # General application configuration
 import Config
-require Logger
 
 config :db,
   ecto_repos: [Db.Repo],
@@ -117,10 +116,13 @@ case System.get_env("OAUTH_PROVIDER") do
       ]
 
   _ ->
-    Logger.info(
-      "OAUTH_PROVIDER not configured. Supported providers: 'KEYCLOAK', 'APPLE', 'GOOGLE'"
-    )
+    nil
 end
+
+# Pushover
+config :db,
+  user: System.get_env("PUSHOVER_USER"),
+  token: System.get_env("PUSHOVER_TOKEN")
 
 # S3
 config :db,

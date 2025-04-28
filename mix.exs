@@ -70,7 +70,9 @@ defmodule Db.MixProject do
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:junit_formatter, "~> 3.4", only: [:test]},
       {:let_me, "~> 1.2.4"},
-      {:hackney, "~> 1.8"}
+      {:hackney, "~> 1.8"},
+      {:tesla, "~> 1.14.1"},
+      {:google_gax, "~> 0.3.1"}
     ]
   end
 

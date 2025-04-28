@@ -1,5 +1,5 @@
 import Config
-
+require Logger
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
 # system starts, so it is typically used to load production configuration
@@ -59,6 +59,11 @@ if config_env() == :prod do
             strategy: Assent.Strategy.Google
           ]
         ]
+
+    _ ->
+      Logger.info(
+        "OAUTH_PROVIDER not configured. Supported providers: 'KEYCLOAK', 'APPLE', 'GOOGLE'"
+      )
   end
 
   case System.get_env("MAILER_ADAPTER") do
@@ -86,6 +91,11 @@ if config_env() == :prod do
     other ->
       raise "Unsupported MAILER_ADAPTER value: #{inspect(other)}; Expected: 'SMTP', 'MAILGUN'"
   end
+
+  # Pushover
+  config :db,
+    user: System.get_env("PUSHOVER_USER"),
+    token: System.get_env("PUSHOVER_TOKEN")
 
   # S3
   config :db,
