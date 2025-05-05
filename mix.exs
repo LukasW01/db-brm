@@ -72,7 +72,7 @@ defmodule Db.MixProject do
       {:let_me, "~> 1.2.4"},
       {:hackney, "~> 1.8"},
       {:tesla, "~> 1.14.1"},
-      {:google_gax, "~> 0.3.1"}
+      {:google_gax, "~> 0.4.1"}
     ]
   end
 
