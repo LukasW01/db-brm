@@ -4,8 +4,19 @@ defmodule Db.Pushover.Api.Messages do
   """
 
   alias Db.Pushover.Connection
-  alias Db.Pushover.Params
   alias GoogleApi.Gax.{Request, Response}
+
+  @params %{
+    :device => :query,
+    :title => :body,
+    :url => :query,
+    :url_title => :query,
+    :priority => :query,
+    :retry => :query,
+    :expire => :query,
+    :sound => :query,
+    :timestamp => :query
+  }
 
   @doc """
   Sends a message via Pushover
@@ -13,7 +24,6 @@ defmodule Db.Pushover.Api.Messages do
   ## Parameters
 
   *   `message` (*type:* `Pushover.Model.Message`) - the message to send.
-  *   `connection` (*type:* `Pushover.Connection.t`) - Connection to server
 
   ## Returns
   *   `{:ok, %{}}` on success
@@ -30,8 +40,10 @@ defmodule Db.Pushover.Api.Messages do
       |> Request.add_param(:query, :user, Db.Pushover.get_user())
       |> Request.add_param(:body, :message, message.data)
       |> Request.add_optional_params(
-        Params.get_optional_params(),
-        Params.optional_params(message)
+        @params,
+        message
+        |> Map.from_struct()
+        |> Enum.filter(fn {k, v} -> Map.has_key?(@params, k) and not is_nil(v) end)
       )
 
     Connection.new()
