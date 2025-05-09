@@ -1,7 +1,9 @@
-defmodule Db.Pushover.Messages do
+defmodule Db.Discord.Model.Webhooks do
   @moduledoc """
   API calls for Pushover Message API
   """
+
+  alias Db.Discord
 
   @doc """
   Sends a message via Pushover
@@ -14,9 +16,9 @@ defmodule Db.Pushover.Messages do
   *   `{:ok, %{}}` on success
   *   `{:error, info}` on failure
   """
-  @spec send(Db.Pushover.Model.Message.t()) ::
+  @spec send(Db.Discord.Model.Webhook.t()) ::
           {:ok, Req.Response.t()} | {:error, Exception.t()}
   def send(message) do
-    Req.post!("https://api.pushover.net/1/messages.json", json: message)
+    Req.post!(url: Discord.get_webhook(), json: message)
   end
 end

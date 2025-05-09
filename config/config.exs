@@ -124,6 +124,10 @@ config :db,
   user: System.get_env("PUSHOVER_USER"),
   token: System.get_env("PUSHOVER_TOKEN")
 
+# Discord
+config :db,
+  webhook_url: System.get_env("DISCORD_WEBHOOK")
+
 # S3
 config :db,
   access_key_id: System.get_env("AWS_ACCESS_KEY_ID"),

@@ -54,7 +54,7 @@ defmodule Db.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:swoosh, "~> 1.5"},
+      {:swoosh, "~> 1.19"},
       {:gen_smtp, "~> 1.0"},
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 1.0"},
@@ -71,8 +71,7 @@ defmodule Db.MixProject do
       {:junit_formatter, "~> 3.4", only: [:test]},
       {:let_me, "~> 1.2.4"},
       {:hackney, "~> 1.8"},
-      {:tesla, "~> 1.14.1"},
-      {:google_gax, "~> 0.4.1"}
+      {:req, "~> 0.5.0"}
     ]
   end
 

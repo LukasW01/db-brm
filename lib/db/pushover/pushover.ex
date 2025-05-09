@@ -4,7 +4,7 @@ defmodule Db.Pushover do
   """
 
   @missing_token_or_user_error_message """
-  To authenticated with Pushover you need to provide valid a user string and 
+  To authenticated with Pushover you need to provide valid a user and 
   an application token. Please include them in your environment config file
 
   PUSHOVER_USER=<string>

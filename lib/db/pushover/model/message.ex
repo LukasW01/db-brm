@@ -15,10 +15,10 @@ defmodule Db.Pushover.Model.Message do
   *   `sound` (*type:* `String.t`, *default:* `nil`) - The name of the sound to override the user's default sound choice.
   *   `timestamp` (*type:* `integer()`, *default:* `nil`) - a Unix timestamp of your message's date and time to display to the user, rather than the time your message is received by Pushover's servers.
   """
-
-  use GoogleApi.Gax.ModelBase
+  alias Db.Pushover
 
   @type t :: %__MODULE__{
+          :message => String.t(),
           :data => String.t(),
           :device => String.t(),
           :title => String.t(),
@@ -31,26 +31,20 @@ defmodule Db.Pushover.Model.Message do
           :timestamp => integer()
         }
 
-  field(:data)
-  field(:device)
-  field(:title)
-  field(:url)
-  field(:url_title)
-  field(:priority)
-  field(:expire)
-  field(:retry)
-  field(:sound)
-  field(:timestamp)
-end
-
-defimpl Poison.Decoder, for: Db.Pushover.Model.Message do
-  def decode(value, options) do
-    Db.Pushover.Model.Message.decode(value, options)
-  end
-end
-
-defimpl Poison.Encoder, for: Db.Pushover.Model.Message do
-  def encode(value, options) do
-    GoogleApi.Gax.ModelBase.encode(value, options)
-  end
+  @derive Jason.Encoder
+  defstruct [
+    :message,
+    :data,
+    :device,
+    :title,
+    :url,
+    :url_title,
+    :priority,
+    :expire,
+    :retry,
+    :sound,
+    :timestamp,
+    user: Pushover.get_user(),
+    token: Pushover.get_token()
+  ]
 end
