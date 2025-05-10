@@ -1,9 +1,10 @@
 defmodule Db.Pushover.Model.Message do
   @moduledoc """
-  A message.
+  A Pushover message
 
   ## Attributes
 
+  *   `message` (*type:* `String.t`, *default:* `nil`) - Your message.
   *   `data` (*type:* `String.t`, *default:* `nil`) - Your message.
   *   `device` (*type:* `String.t`, *default:* `nil`) - Your user's device name(s) to send the message directly (multiple devices may be separated by a comma).
   *   `title` (*type:* `String.t`, *default:* `nil`) - Your message's title, otherwise your app name is used.
@@ -15,7 +16,6 @@ defmodule Db.Pushover.Model.Message do
   *   `sound` (*type:* `String.t`, *default:* `nil`) - The name of the sound to override the user's default sound choice.
   *   `timestamp` (*type:* `integer()`, *default:* `nil`) - a Unix timestamp of your message's date and time to display to the user, rather than the time your message is received by Pushover's servers.
   """
-  alias Db.Pushover
 
   @type t :: %__MODULE__{
           :message => String.t(),
@@ -44,7 +44,7 @@ defmodule Db.Pushover.Model.Message do
     :retry,
     :sound,
     :timestamp,
-    user: Pushover.get_user(),
-    token: Pushover.get_token()
+    :user,
+    :token
   ]
 end

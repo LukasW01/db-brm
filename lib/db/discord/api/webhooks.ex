@@ -1,20 +1,20 @@
 defmodule Db.Discord.Model.Webhooks do
   @moduledoc """
-  API calls for Pushover Message API
+  API calls for Discord Webhook API
   """
 
   alias Db.Discord
 
   @doc """
-  Sends a message via Pushover
+  Sends a Webhook to a Discord Channel
 
   ## Parameters
 
-  *   `message` (*type:* `Pushover.Model.Message`) - the message to send.
+  *   `message` (*type:* `Db.Discord.Model.Webhook`) - the message to send.
 
   ## Returns
-  *   `{:ok, %{}}` on success
-  *   `{:error, info}` on failure
+  *   `{:ok, Req.Response.t()}` on success
+  *   `{:error, Exception.t()}` on failure
   """
   @spec send(Db.Discord.Model.Webhook.t()) ::
           {:ok, Req.Response.t()} | {:error, Exception.t()}

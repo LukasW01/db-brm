@@ -3,6 +3,8 @@ defmodule Db.Pushover.Messages do
   API calls for Pushover Message API
   """
 
+  alias Db.Pushover
+
   @doc """
   Sends a message via Pushover
 
@@ -17,6 +19,8 @@ defmodule Db.Pushover.Messages do
   @spec send(Db.Pushover.Model.Message.t()) ::
           {:ok, Req.Response.t()} | {:error, Exception.t()}
   def send(message) do
-    Req.post!("https://api.pushover.net/1/messages.json", json: message)
+    Req.post!("https://api.pushover.net/1/messages.json",
+      json: %{message | user: Pushover.get_user(), token: Pushover.get_token()}
+    )
   end
 end
