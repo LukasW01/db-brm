@@ -1,7 +1,7 @@
 defmodule DbWeb.Pow.SessionHTML do
   use DbWeb, :html
 
-  case System.get_env("OAUTH_PROVIDER") do
+  case Application.get_env(:db, :oauth_provider) do
     provider when provider in ["KEYCLOAK", "APPLE", "GOOGLE"] ->
       embed_templates "session_html/oauth/*"
 

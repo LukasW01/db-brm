@@ -15,10 +15,10 @@ defmodule Db.Discord do
       url when is_binary(url) ->
         if Regex.match?(url, ~r/https:\/\/discord\.com\/api\/webhooks\/([^\/]+)\/([^\/]+)/),
           do: url,
-          else: {:error, @missing_webhook_error_message}
+          else: raise(@missing_webhook_error_message)
 
       _ ->
-        {:error, @missing_webhook_error_message}
+        raise @missing_webhook_error_message
     end
   end
 end

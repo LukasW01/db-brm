@@ -7,7 +7,7 @@ defmodule Db.Mailer do
   def cast(%{user: user, subject: subject, text: text, html: html}) do
     %Swoosh.Email{}
     |> to({"", user.email})
-    |> from({"DB", System.get_env("MAILER_FROM")})
+    |> from({"DB", Application.get_env(:db, Db.Mailer)[:from]})
     |> subject(subject)
     |> html_body(html)
     |> text_body(text)

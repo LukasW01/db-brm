@@ -4,17 +4,3 @@
   @docs: https://alpinejs.dev/directives/cloak
 */
 [x-cloak] { display: none !important; }
-
-@media (prefers-color-scheme: dark) {
-  .background {
-    --tw-bg-opacity: 1;
-    background-color: #141b2d;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .background {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255, 255, 255);
-  }
-}

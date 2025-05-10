@@ -8,7 +8,7 @@ defmodule Db.Auth.Provider.Keycloak do
   @impl true
   def default_config(_config) do
     [
-      base_url: System.get_env("OAUTH_BASE_URL"),
+      base_url: Application.get_env(:db, :oauth_base_url),
       authorize_url: "/protocol/openid-connect/auth",
       token_url: "/protocol/openid-connect/token",
       user_url: "/protocol/openid-connect/userinfo",

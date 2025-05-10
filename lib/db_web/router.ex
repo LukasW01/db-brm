@@ -40,7 +40,7 @@ defmodule DbWeb.Router do
   scope "/" do
     pipe_through :browser
 
-    case System.get_env("OAUTH_PROVIDER") do
+    case Application.get_env(:db, :oauth_provider) do
       provider when provider in ["KEYCLOAK", "APPLE", "GOOGLE"] ->
         pow_session_routes()
         pow_assent_routes()

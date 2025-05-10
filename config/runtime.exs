@@ -66,6 +66,11 @@ if config_env() == :prod do
       )
   end
 
+  # Auth
+  config :db,
+    oauth_provider: System.get_env("OAUTH_PROVIDER"),
+    oauth_base_url: System.get_env("OAUTH_BASE_URL")
+
   case System.get_env("MAILER_ADAPTER") do
     "SMTP" ->
       config :db, Db.Mailer,
@@ -74,6 +79,7 @@ if config_env() == :prod do
         username: System.get_env("MAILER_USER"),
         password: System.get_env("MAILER_PW"),
         port: String.to_integer(System.get_env("MAILER_PORT", "465")),
+        from: System.get_env("MAILER_FROM"),
         ssl: false,
         tls: :always,
         tls_options: [verify: :verify_none],
@@ -86,7 +92,8 @@ if config_env() == :prod do
         adapter: Swoosh.Adapters.Mailgun,
         api_key: System.get_env("MAILGUN_API_KEY"),
         domain: System.get_env("MAILGUN_DOMAIN"),
-        base_url: System.get_env("MAILGUN_BASE_URL", "https://api.mailgun.net/v3")
+        base_url: System.get_env("MAILGUN_BASE_URL", "https://api.mailgun.net/v3"),
+        from: System.get_env("MAILER_FROM")
 
     other ->
       raise "Unsupported MAILER_ADAPTER value: #{inspect(other)}; Expected: 'SMTP', 'MAILGUN'"

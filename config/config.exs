@@ -33,7 +33,9 @@ config :db, DbWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :db, Db.Mailer, adapter: Swoosh.Adapters.Local
+config :db, Db.Mailer,
+  adapter: Swoosh.Adapters.Local,
+  from: System.get_env("MAILER_FROM")
 
 # Configure esbuild (the version is required)
 config :esbuild,
@@ -73,6 +75,11 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :db, DbWeb.Gettext, locales: ~w(de en), default_locale: "de"
+
+# Auth
+config :db,
+  oauth_provider: System.get_env("OAUTH_PROVIDER"),
+  oauth_base_url: System.get_env("OAUTH_BASE_URL")
 
 config :db, :pow,
   web_mailer_module: DbWeb,

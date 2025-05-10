@@ -13,11 +13,11 @@ defmodule Db.Pushover do
 
   def get_user do
     Application.get_env(:db, :user) ||
-      {:error, @missing_token_or_user_error_message}
+      raise @missing_token_or_user_error_message
   end
 
   def get_token do
     Application.get_env(:db, :token) ||
-      {:error, @missing_token_or_user_error_message}
+      raise @missing_token_or_user_error_message
   end
 end

@@ -30,7 +30,7 @@
         label="Keep me logged in"
       />
       <.link
-        href={"#{System.get_env("OAUTH_BASE_URL")}/login-actions/reset-credentials"}
+        href={"#{Application.get_env(:db, :oauth_base_url)}/login-actions/reset-credentials"}
         class="text-sm font-semibold hover:text-sky-500 dark:hover:text-sky-400 text-gray-700 dark:text-gray-300"
       >
         Forgot your password?
