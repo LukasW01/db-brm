@@ -6,6 +6,7 @@
 
 # General application configuration
 import Config
+require Logger
 
 config :db,
   ecto_repos: [Db.Repo],
@@ -79,7 +80,8 @@ config :db, DbWeb.Gettext, locales: ~w(de en), default_locale: "de"
 # Auth
 config :db,
   oauth_provider: System.get_env("OAUTH_PROVIDER"),
-  oauth_base_url: System.get_env("OAUTH_BASE_URL")
+  oauth_base_url: System.get_env("OAUTH_BASE_URL"),
+  oauth_realm: System.get_env("OAUTH_REALM")
 
 config :db, :pow,
   web_mailer_module: DbWeb,
@@ -99,6 +101,16 @@ case System.get_env("OAUTH_PROVIDER") do
           client_id: System.get_env("OAUTH_CLIENT_ID"),
           client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
           strategy: Db.Auth.Provider.Keycloak
+        ]
+      ]
+
+  "AUTHENTIK" ->
+    config :db, :pow_assent,
+      providers: [
+        Authentik: [
+          client_id: System.get_env("OAUTH_CLIENT_ID"),
+          client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
+          strategy: Db.Auth.Provider.Authentik
         ]
       ]
 

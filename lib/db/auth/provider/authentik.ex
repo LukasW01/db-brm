@@ -1,6 +1,6 @@
-defmodule Db.Auth.Provider.Keycloak do
+defmodule Db.Auth.Provider.Authentik do
   @moduledoc """
-  Defines the authentication with Keycloak and is responsible
+  Defines the authentication with Authentik and is responsible
   normalizing the client scopes.
   """
   use Assent.Strategy.OAuth2.Base
@@ -8,11 +8,10 @@ defmodule Db.Auth.Provider.Keycloak do
   @impl true
   def default_config(_config) do
     [
-      base_url:
-        "#{Application.get_env(:db, :oauth_base_url)}/realms/#{Application.get_env(:db, :oauth_realm)}",
-      authorize_url: "/protocol/openid-connect/auth",
-      token_url: "/protocol/openid-connect/token",
-      user_url: "/protocol/openid-connect/userinfo",
+      base_url: "#{Application.get_env(:db, :oauth_base_url)}/application/o",
+      authorize_url: "/authorize/",
+      token_url: "/token/",
+      user_url: "/userinfo/",
       authorization_params: [scope: "email openid profile"],
       auth_method: :client_secret_post
     ]

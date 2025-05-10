@@ -31,7 +31,14 @@
       />
       <.link
         :if={Application.get_env(:db, :oauth_provider) == "KEYCLOAK"}
-        href={"#{Application.get_env(:db, :oauth_base_url)}/login-actions/reset-credentials"}
+        href={"#{Application.get_env(:db, :oauth_base_url)}/realms/#{Application.get_env(:db, :oauth_realm)}/login-actions/reset-credentials"}
+        class="text-sm font-semibold hover:text-sky-500 dark:hover:text-sky-400 text-gray-700 dark:text-gray-300"
+      >
+        Forgot your password?
+      </.link>
+      <.link
+        :if={Application.get_env(:db, :oauth_provider) == "AUTHENTIK"}
+        href={"#{Application.get_env(:db, :oauth_base_url)}/if/user/#/settings"}
         class="text-sm font-semibold hover:text-sky-500 dark:hover:text-sky-400 text-gray-700 dark:text-gray-300"
       >
         Forgot your password?

@@ -1,5 +1,6 @@
 import Config
 require Logger
+
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
 # system starts, so it is typically used to load production configuration
@@ -40,6 +41,16 @@ if config_env() == :prod do
           ]
         ]
 
+    "AUTHENTIK" ->
+      config :db, :pow_assent,
+        providers: [
+          Authentik: [
+            client_id: System.get_env("OAUTH_CLIENT_ID"),
+            client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
+            strategy: Db.Auth.Provider.Authentik
+          ]
+        ]
+
     "APPLE" ->
       config :db, :pow_assent,
         providers: [
@@ -61,15 +72,14 @@ if config_env() == :prod do
         ]
 
     _ ->
-      Logger.info(
-        "OAUTH_PROVIDER not configured. Supported providers: 'KEYCLOAK', 'APPLE', 'GOOGLE'"
-      )
+      nil
   end
 
   # Auth
   config :db,
     oauth_provider: System.get_env("OAUTH_PROVIDER"),
-    oauth_base_url: System.get_env("OAUTH_BASE_URL")
+    oauth_base_url: System.get_env("OAUTH_BASE_URL"),
+    oauth_realm: System.get_env("OAUTH_REALM")
 
   case System.get_env("MAILER_ADAPTER") do
     "SMTP" ->
