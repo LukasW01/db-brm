@@ -45,7 +45,7 @@ defmodule DbWeb.Router do
         pow_session_routes()
         pow_assent_routes()
 
-      provider when provider not in ["KEYCLOAK", "APPLE", "GOOGLE"] ->
+      _ ->
         pow_routes()
     end
 
@@ -54,12 +54,12 @@ defmodule DbWeb.Router do
 
   scope "/", DbWeb do
     pipe_through [:browser, :protected]
+
+    get "/", PageController, :index
   end
 
   scope "/", DbWeb do
     pipe_through :browser
-
-    get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.

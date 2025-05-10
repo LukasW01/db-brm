@@ -9,6 +9,8 @@ defmodule DbWeb.Layouts do
   `use DbWeb, :live_view`.
   """
   use DbWeb, :html
+  import DbWeb.CoreComponents
+  import DbWeb.SvgComponents
 
   embed_templates "layouts/*"
 end

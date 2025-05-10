@@ -1,0 +1,11 @@
+<div>
+  <div x-data="{ account: false, sidebar: false }">
+    <div class="hidden lg:block">
+      <.nav.desktop conn={@conn} />
+    </div>
+
+    <div class="block lg:hidden">
+      <.nav.mobile conn={@conn} />
+    </div>
+  </div>
+</div>

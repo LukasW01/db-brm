@@ -6,12 +6,12 @@
     for={@changeset}
     as={:user}
     action={@action}
-    class="bg-white dark:bg-gray-800 mt-10 sm:mx-auto sm:w-full sm:max-w-[480px] px-12 pb-10 shadow rounded-lg"
+    class="bg-zinc-50 dark:bg-zinc-800 mt-10 sm:mx-auto sm:w-full sm:max-w-[480px] px-12 pb-10 shadow rounded-lg"
   >
     <PowAssent.Phoenix.HTML.CoreComponents.provider_links conn={@conn}>
       <:authorization_link
         :let={provider}
-        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        class="w-full relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-lg border text-base/6 font-semibold px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/6 focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500 data-disabled:opacity-50 *:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:my-0.5 *:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center *:data-[slot=icon]:text-(--btn-icon) sm:*:data-[slot=icon]:my-1 sm:*:data-[slot=icon]:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-hover:[--btn-icon:ButtonText] border-transparent bg-(--btn-border) dark:bg-(--btn-bg) before:absolute before:inset-0 before:-z-10 before:rounded-[calc(var(--radius-lg)-1px)] before:bg-(--btn-bg) before:shadow-sm dark:before:hidden dark:border-white/5 after:absolute after:inset-0 after:-z-10 after:rounded-[calc(var(--radius-lg)-1px)] after:shadow-[shadow:inset_0_1px_--theme(--color-white/15%)] data-active:after:bg-(--btn-hover-overlay) data-hover:after:bg-(--btn-hover-overlay) dark:after:-inset-px dark:after:rounded-lg data-disabled:before:shadow-none data-disabled:after:shadow-none text-white [--btn-bg:var(--color-zinc-900)] [--btn-border:var(--color-zinc-950)]/90 [--btn-hover-overlay:var(--color-white)]/10 dark:text-white dark:[--btn-bg:var(--color-zinc-600)] dark:[--btn-hover-overlay:var(--color-white)]/5 [--btn-icon:var(--color-zinc-400)] data-active:[--btn-icon:var(--color-zinc-300)] data-hover:[--btn-icon:var(--color-zinc-300)] cursor-default"
       >
         {Phoenix.Naming.humanize(provider)} <span aria-hidden="true">→</span>
       </:authorization_link>
@@ -30,7 +30,6 @@
         label="Keep me logged in"
       />
       <.link
-        :if={System.get_env("OAUTH_PROVIDER") == "KEYCLOAK"}
         href={"#{System.get_env("OAUTH_BASE_URL")}/login-actions/reset-credentials"}
         class="text-sm font-semibold hover:text-sky-500 dark:hover:text-sky-400 text-gray-700 dark:text-gray-300"
       >
