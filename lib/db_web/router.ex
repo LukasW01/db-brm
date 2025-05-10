@@ -41,7 +41,7 @@ defmodule DbWeb.Router do
     pipe_through :browser
 
     case Application.get_env(:db, :oauth_provider) do
-      provider when provider in ["KEYCLOAK", "APPLE", "GOOGLE"] ->
+      provider when not is_nil(provider) and provider in ["KEYCLOAK", "APPLE", "GOOGLE"] ->
         pow_session_routes()
         pow_assent_routes()
 

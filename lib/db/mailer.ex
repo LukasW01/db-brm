@@ -26,7 +26,5 @@ defmodule Db.Mailer do
           {:ok, response}
       end
     end)
-
-    :ok
   end
 end
