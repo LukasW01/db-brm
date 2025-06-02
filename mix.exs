@@ -63,7 +63,7 @@ defmodule Db.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:sentry, "~> 10.9.0"},
+      {:sentry, "~> 10.10.0"},
       {:pow, "~> 1.0.38"},
       {:pow_assent, "~> 0.4.18"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
