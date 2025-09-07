@@ -33,10 +33,6 @@ test:
     - mix ecto.create
     - mix ecto.migrate
     - mix test
-  artifacts:
-    when: always
-    reports:
-      junit: test/*-unit.xml
 
 credo:
   stage: mix
