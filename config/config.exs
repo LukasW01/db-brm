@@ -114,26 +114,6 @@ case System.get_env("OAUTH_PROVIDER") do
         ]
       ]
 
-  "APPLE" ->
-    config :db, :pow_assent,
-      providers: [
-        Apple: [
-          client_id: System.get_env("OAUTH_CLIENT_ID"),
-          client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
-          strategy: Assent.Strategy.Apple
-        ]
-      ]
-
-  "GOOGLE" ->
-    config :db, :pow_assent,
-      providers: [
-        Google: [
-          client_id: System.get_env("OAUTH_CLIENT_ID"),
-          client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
-          strategy: Assent.Strategy.Google
-        ]
-      ]
-
   _ ->
     nil
 end
@@ -148,13 +128,16 @@ config :db,
   webhook_url: System.get_env("DISCORD_WEBHOOK")
 
 # S3
-config :db,
-  access_key_id: System.get_env("AWS_ACCESS_KEY_ID"),
-  secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY"),
-  bucket: System.get_env("S3_BUCKET"),
-  region: System.get_env("AWS_REGION"),
-  url: System.get_env("S3_URL"),
-  host: System.get_env("S3_ALIAS_HOST")
+config :ex_aws,
+  debug_requests: true,
+  json_codec: Jason,
+  access_key_id: System.get_env("S3_ACCESS_KEY_ID"),
+  secret_access_key: System.get_env("S3_SECRET_ACCESS_KEY")
+
+config :ex_aws, :s3,
+  scheme: "https://",
+  host: System.get_env("S3_HOST"),
+  region: System.get_env("S3_REGION")
 
 # Sentry
 config :sentry,

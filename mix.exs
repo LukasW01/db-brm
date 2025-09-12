@@ -71,7 +71,11 @@ defmodule Db.MixProject do
       {:junit_formatter, "~> 3.4", only: [:test]},
       {:let_me, "~> 1.2.4"},
       {:hackney, "~> 1.8"},
-      {:req, "~> 0.5.0"}
+      {:req, "~> 0.5.0"},
+      {:ex_aws, "~> 2.0"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:poison, "~> 6.0"},
+      {:sweet_xml, "~> 0.7"}
     ]
   end
 
