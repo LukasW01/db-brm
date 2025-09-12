@@ -1,4 +1,4 @@
-image: elixir:1.18.0-otp-27-slim
+image: elixir:1.18.0-otp-27
 
 stages:
   - mix
