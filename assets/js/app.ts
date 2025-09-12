@@ -24,8 +24,8 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 import Alpine from "alpinejs";
-import persist from '@alpinejs/persist'
-import axios from 'axios';
+import persist from "@alpinejs/persist"
+import axios from "axios";
 
 declare global {
   interface Window {

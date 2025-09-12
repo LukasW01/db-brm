@@ -42,7 +42,7 @@ defmodule DbWeb.Router do
 
     case Application.compile_env(:db, :oauth_provider) do
       provider
-      when not is_nil(provider) and provider in ["KEYCLOAK", "AUTHENTIK", "APPLE", "GOOGLE"] ->
+      when not is_nil(provider) and provider in ["KEYCLOAK", "AUTHENTIK"] ->
         pow_session_routes()
         pow_assent_routes()
 

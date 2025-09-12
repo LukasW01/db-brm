@@ -3,7 +3,7 @@ defmodule DbWeb.Pow.SessionHTML do
 
   case Application.compile_env(:db, :oauth_provider) do
     provider
-    when not is_nil(provider) and provider in ["KEYCLOAK", "AUTHENTIK", "APPLE", "GOOGLE"] ->
+    when not is_nil(provider) and provider in ["KEYCLOAK", "AUTHENTIK"] ->
       embed_templates "session_html/oauth/*"
 
     _ ->

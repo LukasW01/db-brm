@@ -19,6 +19,6 @@ defmodule Db.Discord.Model.Webhooks do
   @spec send(Db.Discord.Model.Webhook.t()) ::
           {:ok, Req.Response.t()} | {:error, Exception.t()}
   def send(message) do
-    Req.post!(url: Discord.get_webhook(), json: message)
+    Req.post!(url: Application.get_env(:db, :webhook_url), json: message)
   end
 end

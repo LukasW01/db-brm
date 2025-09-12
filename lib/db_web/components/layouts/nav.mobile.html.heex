@@ -3,10 +3,10 @@
   x-cloak
   x-show="sidebar"
   @click.outside="sidebar = false"
-  x-transition:enter="transition transform duration-[0.15s]"
+  x-transition:enter="transition transform duration-[0.10s]"
   x-transition:enter-start="-translate-x-full"
   x-transition:enter-end="translate-x-0"
-  x-transition:leave="transition transform duration-[0.15s]"
+  x-transition:leave="transition transform duration-[0.10s]"
   x-transition:leave-start="translate-x-0"
   x-transition:leave-end="-translate-x-full"
 >
@@ -44,9 +44,7 @@
               <div class="absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden" />
               <.svg icon={:home} />
               <div class="truncate">
-                {Gettext.with_locale(Pow.Plug.current_user(@conn).locale, fn ->
-                  gettext("home")
-                end)}
+                {Gettext.with_locale(Pow.Plug.current_user(@conn).locale, fn -> gettext("home") end)}
               </div>
             </.link>
           </div>
@@ -59,9 +57,7 @@
               <div class="absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden" />
               <.svg icon={:settings} />
               <div class="truncate">
-                {Gettext.with_locale(Pow.Plug.current_user(@conn).locale, fn ->
-                  gettext("settings")
-                end)}
+                {Gettext.with_locale(Pow.Plug.current_user(@conn).locale, fn -> gettext("settings") end)}
               </div>
             </a>
           </div>
@@ -77,9 +73,7 @@
               <div class="absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden" />
               <.svg icon={:support} />
               <div class="truncate">
-                {Gettext.with_locale(Pow.Plug.current_user(@conn).locale, fn ->
-                  gettext("support")
-                end)}
+                {Gettext.with_locale(Pow.Plug.current_user(@conn).locale, fn -> gettext("support") end)}
               </div>
             </.link>
           </div>
@@ -92,9 +86,7 @@
               <div class="absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden" />
               <.svg icon={:changelog} />
               <div class="truncate">
-                {Gettext.with_locale(Pow.Plug.current_user(@conn).locale, fn ->
-                  gettext("changelog")
-                end)}
+                {Gettext.with_locale(Pow.Plug.current_user(@conn).locale, fn -> gettext("changelog") end)}
               </div>
             </.link>
           </div>

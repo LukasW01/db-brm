@@ -29,6 +29,12 @@ if config_env() == :prod do
       For example: /etc/db/db.db
       """
 
+  # Auth
+  config :db,
+    oauth_provider: System.get_env("OAUTH_PROVIDER"),
+    oauth_base_url: System.get_env("OAUTH_BASE_URL"),
+    oauth_realm: System.get_env("OAUTH_REALM")
+
   # PowAssent (OAuth2 provider)
   case System.get_env("OAUTH_PROVIDER") do
     "KEYCLOAK" ->
@@ -51,35 +57,9 @@ if config_env() == :prod do
           ]
         ]
 
-    "APPLE" ->
-      config :db, :pow_assent,
-        providers: [
-          Apple: [
-            client_id: System.get_env("OAUTH_CLIENT_ID"),
-            client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
-            strategy: Assent.Strategy.Apple
-          ]
-        ]
-
-    "GOOGLE" ->
-      config :db, :pow_assent,
-        providers: [
-          Google: [
-            client_id: System.get_env("OAUTH_CLIENT_ID"),
-            client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
-            strategy: Assent.Strategy.Google
-          ]
-        ]
-
     _ ->
       nil
   end
-
-  # Auth
-  config :db,
-    oauth_provider: System.get_env("OAUTH_PROVIDER"),
-    oauth_base_url: System.get_env("OAUTH_BASE_URL"),
-    oauth_realm: System.get_env("OAUTH_REALM")
 
   case System.get_env("MAILER_ADAPTER") do
     "SMTP" ->
@@ -114,14 +94,21 @@ if config_env() == :prod do
     user: System.get_env("PUSHOVER_USER"),
     token: System.get_env("PUSHOVER_TOKEN")
 
-  # S3
+  # Discord
   config :db,
-    access_key_id: System.get_env("AWS_ACCESS_KEY_ID"),
-    secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY"),
-    bucket: System.get_env("S3_BUCKET"),
-    region: System.get_env("AWS_REGION"),
-    url: System.get_env("S3_URL"),
-    host: System.get_env("S3_ALIAS_HOST")
+    webhook_url: System.get_env("DISCORD_WEBHOOK")
+
+  # S3
+  config :ex_aws,
+    debug_requests: true,
+    json_codec: Jason,
+    access_key_id: System.get_env("S3_ACCESS_KEY_ID"),
+    secret_access_key: System.get_env("S3_SECRET_ACCESS_KEY")
+
+  config :ex_aws, :s3,
+    scheme: "https://",
+    host: System.get_env("S3_HOST"),
+    region: System.get_env("S3_REGION")
 
   config :db, Db.Repo,
     database: database_path,
