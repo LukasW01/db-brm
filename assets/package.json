@@ -11,7 +11,7 @@
   "dependencies": {
     "@alpinejs/persist": "^3.15.0",
     "alpinejs": "^3.15.0",
-    "axios": "^1.12.0"
+    "axios": "^1.12.2"
   },
   "devDependencies": {
     "@types/alpinejs__persist": "^3.13.4",
