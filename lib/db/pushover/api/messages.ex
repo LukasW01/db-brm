@@ -3,8 +3,6 @@ defmodule Db.Pushover.Messages do
   API calls for Pushover Message API
   """
 
-  alias Db.Pushover
-
   @doc """
   Sends a message via Pushover
 

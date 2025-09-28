@@ -3,8 +3,6 @@ defmodule Db.Discord.Model.Webhooks do
   API calls for Discord Webhook API
   """
 
-  alias Db.Discord
-
   @doc """
   Sends a Webhook to a Discord Channel
 
