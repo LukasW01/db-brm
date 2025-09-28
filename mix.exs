@@ -45,7 +45,7 @@ defmodule Db.MixProject do
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.3.1", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.4.0", runtime: Mix.env() == :dev},
       {:dart_sass, "~> 0.7", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
