@@ -50,4 +50,5 @@ npm-debug.log
 # Test reports
 test/*.xml
 
-
+# Rust binary artifacts
+/target/
