@@ -22,13 +22,6 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
-  database_path =
-    System.get_env("DATABASE_PATH") ||
-      raise """
-      environment variable DATABASE_PATH is missing.
-      For example: /etc/db/db.db
-      """
-
   # Auth
   config :db,
     oauth_provider: System.get_env("OAUTH_PROVIDER"),
@@ -57,8 +50,11 @@ if config_env() == :prod do
           ]
         ]
 
-    _ ->
+    nil ->
       nil
+
+    other ->
+      raise "Unsupported OAUTH_PROVIDER value: #{inspect(other)}; Expected: 'KEYCLOAK', 'AUTHENTIK'"
   end
 
   case System.get_env("MAILER_ADAPTER") do
@@ -70,12 +66,10 @@ if config_env() == :prod do
         password: System.get_env("MAILER_PW"),
         port: String.to_integer(System.get_env("MAILER_PORT", "465")),
         from: System.get_env("MAILER_FROM"),
-        ssl: false,
+        ssl: true,
         tls: :always,
-        tls_options: [verify: :verify_none],
         auth: :always,
-        retries: 2,
-        no_mx_lookups: false
+        retries: 2
 
     "MAILGUN" ->
       config :db, Db.Mailer,
@@ -84,6 +78,9 @@ if config_env() == :prod do
         domain: System.get_env("MAILGUN_DOMAIN"),
         base_url: System.get_env("MAILGUN_BASE_URL", "https://api.mailgun.net/v3"),
         from: System.get_env("MAILER_FROM")
+
+    nil ->
+      nil
 
     other ->
       raise "Unsupported MAILER_ADAPTER value: #{inspect(other)}; Expected: 'SMTP', 'MAILGUN'"
@@ -109,6 +106,13 @@ if config_env() == :prod do
     scheme: "https://",
     host: System.get_env("S3_HOST"),
     region: System.get_env("S3_REGION")
+
+  database_path =
+    System.get_env("DATABASE_PATH") ||
+      raise """
+      environment variable DATABASE_PATH is missing.
+      For example: /etc/db/db.db
+      """
 
   config :db, Db.Repo,
     database: database_path,

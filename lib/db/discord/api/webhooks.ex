@@ -4,7 +4,7 @@ defmodule Db.Discord.Model.Webhooks do
   """
 
   @doc """
-  Sends a Webhook to a Discord Channel
+  Send a webhook to a Discord channel.
 
   ## Parameters
 

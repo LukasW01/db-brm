@@ -8,7 +8,7 @@ defmodule Db.Pushover.Messages do
 
   ## Parameters
 
-  *   `message` (*type:* `Pushover.Model.Message`) - the message to send.
+  *   `message` (*type:* `Db.Pushover.Model.Message`) - the message to send.
 
   ## Returns
   *   `{:ok, %{}}` on success

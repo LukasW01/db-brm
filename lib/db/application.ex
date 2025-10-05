@@ -4,9 +4,12 @@ defmodule Db.Application do
   @moduledoc false
 
   use Application
+  alias Db.Config
 
   @impl true
   def start(_type, _args) do
+    Config.validate!()
+
     children = [
       DbWeb.Telemetry,
       Db.Repo,

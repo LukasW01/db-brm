@@ -114,8 +114,11 @@ case System.get_env("OAUTH_PROVIDER") do
         ]
       ]
 
-  _ ->
+  nil ->
     nil
+
+  other ->
+    raise "Unsupported OAUTH_PROVIDER value: #{inspect(other)}; Expected: 'KEYCLOAK', 'AUTHENTIK'"
 end
 
 # Pushover
