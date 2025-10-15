@@ -14,9 +14,7 @@ defmodule Db.Mailer do
   end
 
   def process(email) do
-    # An asynchronous process should be used here to prevent enumeration
-    # attacks. Synchronous e-mail delivery can reveal whether a user already
-    # exists in the system or not.
+    # Start an asynchronous process to deliver mail in parallel
     Task.start(fn ->
       case deliver(email) do
         {:error, reason} ->

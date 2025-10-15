@@ -86,10 +86,14 @@ if config_env() == :prod do
       raise "Unsupported MAILER_ADAPTER value: #{inspect(other)}; Expected: 'SMTP', 'MAILGUN'"
   end
 
+  # Crypto
+  config :db,
+    encryption_key: System.get_env("ENCRYPTION_KEY")
+
   # Pushover
   config :db,
-    user: System.get_env("PUSHOVER_USER"),
-    token: System.get_env("PUSHOVER_TOKEN")
+    pushover_user: System.get_env("PUSHOVER_USER"),
+    pushover_token: System.get_env("PUSHOVER_TOKEN")
 
   # Discord
   config :db,

@@ -20,8 +20,8 @@ defmodule Db.Pushover.Messages do
     Req.post!("https://api.pushover.net/1/messages.json",
       json: %{
         message
-        | user: Application.get_env(:db, :user),
-          token: Application.get_env(:db, :token)
+        | user: Application.get_env(:db, :pushover_user),
+          token: Application.get_env(:db, :pushover_token)
       }
     )
   end

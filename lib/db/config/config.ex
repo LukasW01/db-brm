@@ -148,4 +148,9 @@ defmodule Db.Config do
     os_env: "MAILER_FROM",
     type: Type.Mail
   )
+
+  app_env(:encryption_key, :db, :encryption_key,
+    os_env: "ENCRYPTION_KEY",
+    type: Type.Key
+  )
 end
