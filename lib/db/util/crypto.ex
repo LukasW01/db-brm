@@ -6,10 +6,8 @@ defmodule Db.Crypto do
   ## Usage
 
   iex> Db.Crypto.encrypt("input.txt", "encrypted.bin")
-  :ok
 
   iex> Db.Crypto.decrypt("encrypted.bin", "output.txt")
-  :ok
   """
 
   @chunk_size 50 * 1024 * 1024
@@ -20,6 +18,8 @@ defmodule Db.Crypto do
   Encrypts `input_path` into `output_path` with the given 32-byte key.
   Writes the 16-byte IV at the start of the file.
   """
+  @spec encrypt(input_file :: String.t(), output_file :: String.t()) ::
+          no_return() | {:error, Exception.t()}
   def encrypt(input_file, output_file) do
     File.open!(output_file, [:write], fn output ->
       IO.binwrite(output, @iv)
@@ -46,6 +46,8 @@ defmodule Db.Crypto do
   Decrypts `input_file` into `output_file` using AES-256-CTR with the given 32-byte key.
   Reads the 16-byte initialization vector (IV) from the start of the input file.
   """
+  @spec decrypt(input_file :: String.t(), output_file :: String.t()) ::
+          no_return() | {:error, Exception.t()}
   def decrypt(input_file, output_file) do
     File.open!(input_file, [:read], fn input ->
       @iv = get_iv(input)
@@ -68,6 +70,7 @@ defmodule Db.Crypto do
     end)
   end
 
+  @spec get_iv(file :: String.t()) :: binary() | {:error, Exception.t()}
   defp get_iv(file) do
     case IO.binread(file, 16) do
       :eof ->

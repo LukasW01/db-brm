@@ -2,8 +2,7 @@ defmodule Db.Webdav do
   @moduledoc """
   Provides configuration for connecting to a WebDAV server.
 
-  This module defines a `config/0` function that builds and returns a
-  `Webdavex.Config` struct containing the base URL and authentication headers
+  `config/0` function that builds and returns a `Webdavex.Config` struct containing the base URL and authentication headers
   required to interact with the WebDAV server.
 
   ## Example
@@ -18,9 +17,10 @@ defmodule Db.Webdav do
     
       iex> Db.Webdav.config() |> Webdavex.Client.get("image.png")
   """
+  @spec config() :: Webdavex.Config.t()
   def config do
     Webdavex.Config.new(
-      base_url: "http://myhost.com",
+      base_url: URI.parse(Application.get_env(:db, :webdav_url)),
       headers: [
         {"Authorization",
          "Basic " <>

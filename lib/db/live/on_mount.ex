@@ -3,9 +3,6 @@ defmodule Db.OnMount do
   @moduledoc """
   Provides `on_mount/4` hooks for LiveView authentication and localization.
 
-  This module integrates Pow authentication into LiveViews until official support
-  for socket-based authentication is available upstream.
-
   ## Responsibilities
 
     * Assigns the authenticated user (`@current_user`) to the LiveView socket.
@@ -17,7 +14,7 @@ defmodule Db.OnMount do
   use DbWeb, :verified_routes
 
   def on_mount(:default, _params, session, socket) do
-    socket = mount_current_user(socket, session)
+    socket = mount_session(socket, session)
 
     if socket.assigns.current_user do
       mound_locale(socket.assigns.current_user.locale)
@@ -33,7 +30,11 @@ defmodule Db.OnMount do
     end
   end
 
-  defp mount_current_user(socket, session) do
+  @spec mount_session(
+          socket :: Phoenix.LiveView.Socket.t(),
+          session :: Phoenix.LiveView.Socket.t()
+        ) :: Phoenix.LiveView.Session.t()
+  defp mount_session(socket, session) do
     Phoenix.Component.assign_new(socket, :current_user, fn ->
       {_conn, user} =
         %Plug.Conn{
@@ -52,7 +53,8 @@ defmodule Db.OnMount do
     end)
   end
 
+  @spec mound_locale(locale :: String.t()) :: no_return()
   defp mound_locale(locale) do
-    Gettext.put_locale(DbWeb.Gettext, locale || "de")
+    Gettext.put_locale(DbWeb.Gettext, locale || "en")
   end
 end

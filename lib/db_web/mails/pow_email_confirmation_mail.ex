@@ -1,6 +1,5 @@
 defmodule DbWeb.PowEmailConfirmationMail do
   @moduledoc false
-
   use DbWeb, :mail
 
   def email_confirmation(assigns) do

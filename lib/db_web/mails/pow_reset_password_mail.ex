@@ -1,6 +1,5 @@
 defmodule DbWeb.PowResetPasswordMail do
   @moduledoc false
-
   use DbWeb, :mail
 
   def reset_password(assigns) do

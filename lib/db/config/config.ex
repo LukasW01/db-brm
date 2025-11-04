@@ -6,47 +6,38 @@ defmodule Db.Config do
 
     * **Operating system environment variables** (e.g., `DATABASE_PATH`, `SECRET_KEY_BASE`), or  
     * **Application environment values** defined in `config/*.exs`.
-
-  Each setting includes its expected type, optional default value, and the corresponding
-  OS environment variable name, ensuring that all critical runtime configuration
-  is validated and documented in one place.
   """
   use Skogsra
 
   alias Db.Config.Type
 
   # DB
-  @envdoc "DB path"
   app_env(:db_path, :db, [Db.Repo, :path],
     os_env: "DATABASE_PATH",
     type: :binary
   )
 
   # App
-  @envdoc "Secret key base"
   app_env(:secret_key_base, :db, :secret_key_base,
     os_env: "SECRET_KEY_BASE",
     type: :binary
   )
 
-  @envdoc "Hostname"
   app_env(:hostname, :db, [DbWeb.Endpoint, :hostname],
     os_env: "HOSTNAME",
     default: "example.com",
     type: :binary
   )
 
-  @envdoc "Protocol scheme"
   app_env(:scheme, :db, [DbWeb.Endpoint, :scheme],
     os_env: "SCHEME",
     default: "https",
     type: :binary
   )
 
-  @envdoc "TCP-Port"
   app_env(:port, :db, [DbWeb.Endpoint, :port],
     os_env: "PORT",
-    default: "4000",
+    default: "443",
     type: :integer
   )
 
@@ -88,7 +79,7 @@ defmodule Db.Config do
   )
 
   # Discord
-  app_env(:discord_webhook_url, :db, :webhook_url,
+  app_env(:webhook_url, :db, :webhook_url,
     os_env: "DISCORD_WEBHOOK",
     type: Type.Discord
   )
@@ -111,6 +102,22 @@ defmodule Db.Config do
 
   app_env(:s3_region, :ex_aws, :s3_region,
     os_env: "S3_REGION",
+    type: :binary
+  )
+
+  # WebDAV
+  app_env(:webdav_url, :db, :webdav_url,
+    os_env: "WEBDAV_URL",
+    type: Type.Url
+  )
+
+  app_env(:webdav_user, :db, :webdav_user,
+    os_env: "WEBDAV_USER",
+    type: :binary
+  )
+
+  app_env(:webdav_pw, :db, :webdav_pw,
+    os_env: "WEBDAV_PW",
     type: :binary
   )
 
@@ -158,23 +165,9 @@ defmodule Db.Config do
     type: Type.Mail
   )
 
+  # Encryption
   app_env(:encryption_key, :db, :encryption_key,
     os_env: "ENCRYPTION_KEY",
     type: Type.Key
-  )
-
-  app_env(:webdav_url, :db, :webdav_url,
-    os_env: "WEBDAV_URL",
-    type: Type.Url
-  )
-
-  app_env(:webdav_user, :db, :webdav_user,
-    os_env: "WEBDAV_USER",
-    type: :binary
-  )
-
-  app_env(:webdav_pw, :db, :webdav_pw,
-    os_env: "WEBDAV_PW",
-    type: :binary
   )
 end
