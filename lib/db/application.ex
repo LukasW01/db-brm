@@ -14,6 +14,7 @@ defmodule Db.Application do
       DbWeb.Telemetry,
       Db.Repo,
       {Ecto.Migrator, repos: Application.fetch_env!(:db, :ecto_repos), skip: skip_migrations?()},
+      {Oban, Application.fetch_env!(:db, Oban)},
       {DNSCluster, query: Application.get_env(:db, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Db.PubSub},
       # Start the Finch HTTP client for sending emails

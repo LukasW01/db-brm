@@ -38,6 +38,12 @@ config :db, Db.Mailer,
   adapter: Swoosh.Adapters.Local,
   from: System.get_env("MAILER_FROM")
 
+config :db, Oban,
+  engine: Oban.Engines.Lite,
+  notifier: Oban.Notifiers.PG,
+  queues: [default: 10],
+  repo: Db.Repo
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",

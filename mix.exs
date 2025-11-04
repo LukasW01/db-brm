@@ -36,8 +36,9 @@ defmodule Db.MixProject do
       {:phoenix_ecto, "~> 4.5"},
       {:phoenix_pubsub, "~> 2.1"},
       {:ecto_sql, "~> 3.10"},
-      {:ecto_sqlite3, ">= 0.0.0"},
       {:ecto_sqlite3_extras, "~> 1.2.2"},
+      {:ecto_sqlite3, ">= 0.0.0", only: :test},
+      {:postgrex, ">= 0.0.0", only: [:dev, :prod]},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.0"},
@@ -76,7 +77,10 @@ defmodule Db.MixProject do
       {:ex_aws_s3, "~> 2.0"},
       {:poison, "~> 6.0"},
       {:sweet_xml, "~> 0.7"},
-      {:skogsra, "~> 2.5"}
+      {:skogsra, "~> 2.5"},
+      {:oban, "~> 2.0"},
+      {:igniter, "~> 0.5", only: [:dev]},
+      {:webdavex, "~> 0.3.3"}
     ]
   end
 
