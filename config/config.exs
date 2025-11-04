@@ -140,6 +140,12 @@ config :db,
 config :db,
   webhook_url: System.get_env("DISCORD_WEBHOOK")
 
+# WebDAV
+config :db,
+  webdav_url: System.get_env("WEBDAV_URL"),
+  webdav_user: System.get_env("WEBDAV_USER"),
+  webdav_pw: System.get_env("WEBDAV_PW")
+
 # S3
 config :ex_aws,
   debug_requests: true,

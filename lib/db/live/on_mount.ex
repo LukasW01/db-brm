@@ -1,9 +1,15 @@
 # Remove when upstream Pow can handle LiveView/socket auth
 defmodule Db.OnMount do
   @moduledoc """
-  on_mount/4 actions when a LiveView is mounted:
-  - Assigns @current_user to the socket for LiveView
-  - Sets the locale (de, en)
+  Provides `on_mount/4` hooks for LiveView authentication and localization.
+
+  This module integrates Pow authentication into LiveViews until official support
+  for socket-based authentication is available upstream.
+
+  ## Responsibilities
+
+    * Assigns the authenticated user (`@current_user`) to the LiveView socket.
+    * Sets the locale (`de` or `en`) based on the user's stored preference.
 
   @link: https://github.com/pow-auth/pow/issues/706
   """

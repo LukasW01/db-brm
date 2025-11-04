@@ -1,6 +1,15 @@
 defmodule Db.Config do
   @moduledoc """
-  Runtime configuration validation 
+  Centralized runtime configuration and environment validation.
+
+  Each configuration value is automatically populated from either:
+
+    * **Operating system environment variables** (e.g., `DATABASE_PATH`, `SECRET_KEY_BASE`), or  
+    * **Application environment values** defined in `config/*.exs`.
+
+  Each setting includes its expected type, optional default value, and the corresponding
+  OS environment variable name, ensuring that all critical runtime configuration
+  is validated and documented in one place.
   """
   use Skogsra
 
@@ -152,5 +161,20 @@ defmodule Db.Config do
   app_env(:encryption_key, :db, :encryption_key,
     os_env: "ENCRYPTION_KEY",
     type: Type.Key
+  )
+
+  app_env(:webdav_url, :db, :webdav_url,
+    os_env: "WEBDAV_URL",
+    type: Type.Url
+  )
+
+  app_env(:webdav_user, :db, :webdav_user,
+    os_env: "WEBDAV_USER",
+    type: :binary
+  )
+
+  app_env(:webdav_pw, :db, :webdav_pw,
+    os_env: "WEBDAV_PW",
+    type: :binary
   )
 end

@@ -1,7 +1,7 @@
 defmodule Db.Auth.Provider.Keycloak do
   @moduledoc """
-  Defines the authentication with Keycloak and is responsible
-  normalizing the client scopes.
+  Implements authentication via Keycloak using OAuth2 and normalizes
+  the returned user information for internal use.
   """
   use Assent.Strategy.OAuth2.Base
 
