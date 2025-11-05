@@ -1,6 +1,6 @@
 # DB
 
-A SQL backup and restore manager that safely stores your database dumps in an S3 bucket and provides notifications via Discord webhooks, Pushover and Mailgun.
+A SQL backup and restore manager that safely stores your database dumps in a local or remote location and provides notifications via Discord webhooks, Pushover, or SMTP.
 
 ## Getting Started
 
