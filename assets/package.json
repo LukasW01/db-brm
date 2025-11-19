@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/alpinejs__persist": "^3.13.4",
     "@types/alpinejs": "^3.13.11",
-    "@types/node": "^24.10.0",
+    "@types/node": "^24.10.1",
     "@types/phoenix": "^1.6.6",
     "@types/phoenix_live_view": "^1.0.0"
   }
