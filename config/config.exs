@@ -160,8 +160,7 @@ config :ex_aws, :s3,
 
 # Sentry
 config :sentry,
-  dsn:
-    "https://1a3510ea37dc4ae4992ab25b0fb0ed7e@sentry.wigger.one/3",
+  dsn: "https://1a3510ea37dc4ae4992ab25b0fb0ed7e@sentry.wigger.one/3",
   environment_name: Mix.env(),
   enable_source_code_context: true,
   root_source_code_paths: [File.cwd!()]
