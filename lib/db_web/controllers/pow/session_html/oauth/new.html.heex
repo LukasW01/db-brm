@@ -43,6 +43,13 @@
       >
         Forgot your password?
       </.link>
+      <.link
+        :if={Application.get_env(:db, :oauth_provider) == "POCKET_ID"}
+        href={"#{Application.get_env(:db, :oauth_base_url)}/settings/account"}
+        class="text-sm font-semibold hover:text-sky-500 dark:hover:text-sky-400 text-gray-700 dark:text-gray-300"
+      >
+        Forgot your password?
+      </.link>
     </:actions>
   </.simple_form>
 </div>

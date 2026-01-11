@@ -120,11 +120,21 @@ case System.get_env("OAUTH_PROVIDER") do
         ]
       ]
 
+  "POCKET_ID" ->
+    config :db, :pow_assent,
+      providers: [
+        PocketID: [
+          client_id: System.get_env("OAUTH_CLIENT_ID"),
+          client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
+          strategy: Db.Auth.Provider.PocketID
+        ]
+      ]
+
   nil ->
     nil
 
   other ->
-    raise "Unsupported OAUTH_PROVIDER value: #{inspect(other)}; Expected: 'KEYCLOAK', 'AUTHENTIK'"
+    raise "Unsupported OAUTH_PROVIDER value: #{inspect(other)}; Expected: 'KEYCLOAK', 'AUTHENTIK', 'POCKET_ID'"
 end
 
 # Crypto

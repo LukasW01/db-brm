@@ -17,7 +17,7 @@ A SQL backup and restore manager that safely stores your database dumps in a loc
 Install dependencies
 
 ```bash
-cd assets && npm install
+npm install --prefix assets
 ```
 
 Run setup
