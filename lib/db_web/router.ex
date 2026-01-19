@@ -1,5 +1,6 @@
 defmodule DbWeb.Router do
   use DbWeb, :router
+  import Oban.Web.Router
   use Pow.Phoenix.Router
   use PowAssent.Phoenix.Router
 
@@ -82,6 +83,7 @@ defmodule DbWeb.Router do
 
       live_dashboard "/dashboard", metrics: DbWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
+      oban_dashboard("/oban")
     end
   end
 end

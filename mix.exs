@@ -78,6 +78,7 @@ defmodule Db.MixProject do
       {:sweet_xml, "~> 0.7"},
       {:skogsra, "~> 2.5"},
       {:oban, "~> 2.0"},
+      {:oban_web, "~> 2.11"},
       {:igniter, "~> 0.5", only: [:dev]},
       {:webdavex, "~> 0.3.3"}
     ]
