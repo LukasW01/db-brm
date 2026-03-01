@@ -11,14 +11,14 @@
   "dependencies": {
     "@alpinejs/persist": "^3.15.8",
     "alpinejs": "^3.15.8",
-    "axios": "^1.13.5",
+    "axios": "^1.13.6",
     "chart.js": "^4.4.7",
     "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "@types/alpinejs__persist": "^3.13.4",
     "@types/alpinejs": "^3.13.11",
-    "@types/node": "^25.3.0",
+    "@types/node": "^25.3.3",
     "@types/phoenix": "^1.6.7",
     "@types/phoenix_live_view": "^1.0.0"
   }
