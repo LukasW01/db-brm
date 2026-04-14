@@ -25,22 +25,17 @@ import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 import Alpine from "alpinejs";
 import persist from "@alpinejs/persist"
-import axios from "axios";
 
 declare global {
   interface Window {
     liveReloader: CustomEvent,
     Alpine: any,
-    axios: any
   }
 }
 
 window.Alpine = Alpine;
 Alpine.plugin(persist)
 Alpine.start();
-
-window.axios = axios;
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 const csrfToken: string = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 const liveSocket = new LiveSocket("/live", Socket, {
