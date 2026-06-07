@@ -69,7 +69,7 @@ defmodule Db.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:junit_formatter, "~> 3.4", only: [:test]},
-      {:let_me, "~> 2.0.0"},
+      {:let_me, "~> 3.0.1"},
       {:hackney, "~> 1.8"},
       {:req, "~> 0.5.0"},
       {:ex_aws, "~> 2.0"},
